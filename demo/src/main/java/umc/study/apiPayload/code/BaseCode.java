@@ -6,3 +6,4 @@ public interface BaseCode {
 
     public ReasonDTO getReasonHttpStatus();
 }
+

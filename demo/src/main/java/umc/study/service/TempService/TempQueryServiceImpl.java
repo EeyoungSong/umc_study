@@ -11,7 +11,7 @@ public class TempQueryServiceImpl implements TempQueryService{
 
     @Override
     public void CheckFlag(Integer flag) {
-        if (flag == 1) // 로직 상 flag가 1이면 예외 만들어 줄거야
+        if (flag == 1)
             throw new TempHandler(ErrorStatus.TEMP_EXCEPTION);
     }
 }
