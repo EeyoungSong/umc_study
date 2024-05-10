@@ -37,7 +37,7 @@ public class MemberConverter {
                 .gender(gender)
                 .name(request.getName())
                 .birthday(request.getBirthDay())
-                .memberFoodCategoryList(new ArrayList<>())
+                .memberPrefers(new ArrayList<>())
                 .build();
 
     }

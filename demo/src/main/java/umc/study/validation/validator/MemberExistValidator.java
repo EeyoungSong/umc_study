@@ -5,15 +5,8 @@ import jakarta.validation.ConstraintValidatorContext;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import umc.study.apiPayload.code.status.ErrorStatus;
-import umc.study.domain.Member;
-import umc.study.repository.FoodCategoryRepository;
-import umc.study.repository.MemberRepository;
 import umc.study.service.MemberService.MemberQueryService;
-import umc.study.validation.annotation.ExistCategories;
 import umc.study.validation.annotation.ExistMember;
-import umc.study.validation.annotation.ExistMembers;
-
-import java.util.List;
 
 @Component
 @RequiredArgsConstructor

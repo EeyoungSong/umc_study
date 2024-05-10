@@ -9,15 +9,14 @@ import umc.study.validation.annotation.ExistCategories;
 import java.time.LocalDate;
 import java.util.List;
 
-public class ReviewRequest {
+public class RestaurantRequest {
     @Getter
-    public static class AddReviewDTO {
-
+    public static class AddRestaurantDTO {
+        @NotBlank
+        String name;
         @NotNull
-        private float star;
-        private String body;
+        String address;
+
 
     }
-
-
 }

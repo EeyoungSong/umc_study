@@ -2,6 +2,7 @@ package umc.study.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import umc.study.converter.RestaurantConverter;
 import umc.study.domain.common.BaseEntity;
 
 import java.util.ArrayList;
@@ -33,4 +34,9 @@ public class Restaurant extends BaseEntity {
 
     @OneToMany(mappedBy = "restaurant", cascade = CascadeType.REMOVE)
     private List<Review> reviews = new ArrayList<>();
+
+    public void setRestaurantCategory(RestaurantCategory restaurantCategory) {
+        this.restaurantCategory = restaurantCategory;
+        restaurantCategory.getRestaurants().add(this);
+    }
 }
