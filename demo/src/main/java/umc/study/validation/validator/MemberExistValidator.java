@@ -8,25 +8,27 @@ import umc.study.apiPayload.code.status.ErrorStatus;
 import umc.study.domain.Member;
 import umc.study.repository.FoodCategoryRepository;
 import umc.study.repository.MemberRepository;
+import umc.study.service.MemberService.MemberQueryService;
 import umc.study.validation.annotation.ExistCategories;
+import umc.study.validation.annotation.ExistMember;
+import umc.study.validation.annotation.ExistMembers;
 
 import java.util.List;
 
 @Component
 @RequiredArgsConstructor
-public class MembersExistValidator implements ConstraintValidator<ExistCategories, List<Long>> {
+public class MemberExistValidator implements ConstraintValidator<ExistMember, Long> {
 
-    private final MemberRepository memberRepository;
+    private final MemberQueryService memberQueryService;
 
     @Override
-    public void initialize(ExistCategories constraintAnnotation) {
+    public void initialize(ExistMember constraintAnnotation) {
         ConstraintValidator.super.initialize(constraintAnnotation);
     }
 
     @Override
-    public boolean isValid(List<Long> values, ConstraintValidatorContext context) {
-        boolean isValid = values.stream()
-                .allMatch(value -> memberRepository.existsById(value));
+    public boolean isValid(Long value, ConstraintValidatorContext context) {
+        boolean isValid = memberQueryService.existById(value);
 
         if (!isValid) {
             context.disableDefaultConstraintViolation();
