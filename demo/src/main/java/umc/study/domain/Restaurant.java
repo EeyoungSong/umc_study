@@ -20,7 +20,7 @@ public class Restaurant extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "restaurant_category_id")
-    private Restaurant_category restaurantCategory;
+    private RestaurantCategory restaurantCategory;
 
     @Column(nullable = false, length = 30)
     private String name;
@@ -29,5 +29,8 @@ public class Restaurant extends BaseEntity {
     private String address;
 
     @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
-    private List<Mission> missionList = new ArrayList<>();
+    private List<Mission> missions = new ArrayList<>();
+
+    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.REMOVE)
+    private List<Review> reviews = new ArrayList<>();
 }

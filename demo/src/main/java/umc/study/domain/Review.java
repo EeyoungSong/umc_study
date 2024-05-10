@@ -23,7 +23,18 @@ public class Review extends BaseEntity {
     @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
 
-    private float star;
+    private double star;
 
+    @Column(length = 1000)
     private String body;
+
+    public void setMember(Member member) {
+        this.member = member;
+        member.getReviews().add(this);
+    }
+
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
+        restaurant.getReviews().add(this);
+    }
 }
