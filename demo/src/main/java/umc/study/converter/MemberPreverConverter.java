@@ -8,12 +8,12 @@ import java.util.stream.Collectors;
 
 public class MemberPreverConverter {
 
-    public static List<MemberPrefer> toMemberPrefers(List<FoodCategory> foodCategoryList) {
+    public static List<MemberPrefer> toMemberPrefers(List<FoodCategory> foodCategories) {
 
-        return foodCategoryList.stream()
+        return foodCategories.stream()
                 .map(foodCategory ->
                         MemberPrefer.builder()
-                                .foodCategory(foodCategory)
+                                .foodCategory(foodCategory) // food category 객체 추가 MemeberPrefer에 추가 (연결)
                                 .build()
                 ).collect(Collectors.toList());
     }

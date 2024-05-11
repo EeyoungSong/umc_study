@@ -22,7 +22,7 @@ public class MemberPrefer extends BaseEntity {
     private Member member;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "category_id")
+    @JoinColumn(name = "food_category_id")
     private FoodCategory foodCategory;
 
     public void setMember(Member member){

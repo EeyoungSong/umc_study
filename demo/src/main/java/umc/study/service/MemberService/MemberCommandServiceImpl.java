@@ -29,14 +29,14 @@ public class MemberCommandServiceImpl implements MemberCommandService{
     public Member joinMember(MemberRequest.JoinDTO request) {
 
         Member newMember = MemberConverter.toMember(request);
-        List<FoodCategory> foodCategoryList = request.getMemberFoodCategory().stream()
+        List<FoodCategory> foodCategories = request.getMemberFoodCategory().stream()
                 .map(category -> {
                     return foodCategoryRepository.findById(category).orElseThrow(() -> new FoodCategoryHandler(ErrorStatus.FOOD_CATEGORY_NOT_FOUND));
                 }).collect(Collectors.toList());
 
-        List<MemberPrefer> memberPrefers = MemberPreverConverter.toMemberPrefers(foodCategoryList);
+        List<MemberPrefer> memberPrefers = MemberPreverConverter.toMemberPrefers(foodCategories);
 
-        memberPrefers.forEach(memberPrefer -> {memberPrefer.setMember(newMember);});
+        memberPrefers.forEach(memberPrefer -> {memberPrefer.setMember(newMember);}); //왜 얘는 세터로 해주지?? 빌더 안쓰고?
 
         return memberRepository.save(newMember);
     }

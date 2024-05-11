@@ -39,4 +39,8 @@ public class Restaurant extends BaseEntity {
         this.restaurantCategory = restaurantCategory;
         restaurantCategory.getRestaurants().add(this);
     }
+
+    public void setMission(Mission mission) {
+        this.missions.add(mission);
+    }
 }
