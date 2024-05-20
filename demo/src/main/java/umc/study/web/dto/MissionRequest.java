@@ -11,9 +11,7 @@ public class MissionRequest {
 
         @NotNull
         int point;
-
         int price;
-
         LocalDate deadline;
 
     }

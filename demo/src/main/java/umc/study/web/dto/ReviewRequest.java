@@ -14,10 +14,8 @@ public class ReviewRequest {
     public static class AddReviewDTO {
 
         @NotNull
-        private float star;
+        private double star;
         private String body;
 
     }
-
-
 }

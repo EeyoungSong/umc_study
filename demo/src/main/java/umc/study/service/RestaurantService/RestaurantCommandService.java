@@ -7,4 +7,5 @@ import umc.study.web.dto.RestaurantRequest;
 
 public interface RestaurantCommandService {
     Restaurant addRestaurant(Long restaurantCategoryId, RestaurantRequest.AddRestaurantDTO request);
+
 }
