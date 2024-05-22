@@ -5,20 +5,16 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import umc.study.apiPayload.ApiResponse;
+import umc.study.converter.ChallengingMissionConverter;
 import umc.study.converter.MissionConverter;
-import umc.study.converter.ReviewConverter;
 import umc.study.domain.Mission;
-import umc.study.domain.Review;
-import umc.study.repository.MissionRepository;
-import umc.study.repository.ReviewRepository;
+import umc.study.domain.mapping.ChallengingMission;
+import umc.study.service.ChallengingMissionService.ChallengingMissionCommandService;
 import umc.study.service.MissionService.MissionCommandService;
-import umc.study.service.ReviewService.ReviewCommandService;
-import umc.study.validation.annotation.ExistMember;
+import umc.study.validation.annotation.ExistChallengingMission;
 import umc.study.validation.annotation.ExistRestaurant;
 import umc.study.web.dto.MissionRequest;
 import umc.study.web.dto.MissionResponse;
-import umc.study.web.dto.ReviewRequest;
-import umc.study.web.dto.ReviewResponse;
 
 @RestController
 @RequiredArgsConstructor
@@ -27,7 +23,8 @@ import umc.study.web.dto.ReviewResponse;
 public class MissionRestController {
 
     private final MissionCommandService missionCommandService;
-    private final MissionRepository missionRepository;
+    private final ChallengingMissionCommandService challengingMissionCommandService;
+
 
     @PostMapping("/")
     public ApiResponse<MissionResponse.AddMissionResultDTO> addReview(
@@ -36,5 +33,12 @@ public class MissionRestController {
 
         Mission mission = missionCommandService.addMission(restaurantId, request);
         return ApiResponse.onSuccess(MissionConverter.toAddMissionResultDTO(mission));
+    }
+
+    @PostMapping("/challenging")
+    public ApiResponse<MissionResponse.AddChallengingMissionResultDTO> addChallengingMission(
+            @RequestBody @ExistChallengingMission @Valid MissionRequest.AddChallengingMissionDTO request){
+        ChallengingMission challengingMission = challengingMissionCommandService.addChallengingMission(request);
+        return ApiResponse.onSuccess(ChallengingMissionConverter.toAddChallengingMissionResultDTO(challengingMission));
     }
 }

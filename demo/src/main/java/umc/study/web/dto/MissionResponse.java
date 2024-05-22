@@ -47,4 +47,12 @@ public class MissionResponse {
         Boolean isFirst;
         Boolean isLast;
     }
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class AddChallengingMissionResultDTO {
+        Long memberMissionID;
+        LocalDateTime createdAt;
+    }
 }

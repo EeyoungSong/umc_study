@@ -11,7 +11,7 @@ import umc.study.domain.enums.MemberStatus;
 import umc.study.domain.enums.SocialType;
 import umc.study.domain.mapping.MemberAllowance;
 import umc.study.domain.mapping.MemberPrefer;
-import umc.study.domain.mapping.MemberMission;
+import umc.study.domain.mapping.ChallengingMission;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -75,7 +75,7 @@ public class Member extends BaseEntity {
     private List<Review> reviews = new ArrayList<>();
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
-    private List<MemberMission> memberMissions = new ArrayList<>();
+    private List<ChallengingMission> memberMissions = new ArrayList<>();
 
 
 }

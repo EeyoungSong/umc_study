@@ -12,7 +12,7 @@ import umc.study.domain.enums.MissionStatus;
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class MemberMission extends BaseEntity {
+public class ChallengingMission extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,7 +27,17 @@ public class MemberMission extends BaseEntity {
     private Mission mission;
 
     @Enumerated(EnumType.STRING)
-    @Column(columnDefinition = "VARCHAR(10)")
+//    @Column(columnDefinition = "VARCHAR(20)") ?? 이거 뭐지??
     private MissionStatus status;
+
+    public void setMember(Member member) {
+        this.member = member;
+        member.getMemberMissions().add(this);
+    }
+
+    public void setMission(Mission mission) {
+        this.mission = mission;
+        mission.getMemberMissions().add(this);
+    }
 }
 
