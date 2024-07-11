@@ -2,17 +2,16 @@ package umc.study.domain.mapping;
 
 import jakarta.persistence.*;
 import lombok.*;
+import umc.study.domain.Allowance;
 import umc.study.domain.Member;
-import umc.study.domain.Mission;
 import umc.study.domain.common.BaseEntity;
-import umc.study.domain.enums.MissionStatus;
 
 @Entity
 @Getter
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class Member_mission extends BaseEntity {
+public class MemberAllowance extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,11 +22,7 @@ public class Member_mission extends BaseEntity {
     private Member member;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "mission_id")
-    private Mission mission;
+    @JoinColumn(name = "allowance_id")
+    private Allowance allowance;
 
-    @Enumerated(EnumType.STRING)
-    @Column(columnDefinition = "VARCHAR(10)")
-    private MissionStatus status;
 }
-

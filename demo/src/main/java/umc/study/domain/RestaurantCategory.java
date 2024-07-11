@@ -4,12 +4,15 @@ import jakarta.persistence.*;
 import lombok.*;
 import umc.study.domain.common.BaseEntity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Getter
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class Restaurant_category extends BaseEntity {
+public class RestaurantCategory extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,5 +20,8 @@ public class Restaurant_category extends BaseEntity {
 
     @Column(nullable = false, length = 20)
     private String name;
+
+    @OneToMany(mappedBy = "restaurantCategory", cascade = CascadeType.ALL)
+    private List<Restaurant> restaurants = new ArrayList<>();
 }
 

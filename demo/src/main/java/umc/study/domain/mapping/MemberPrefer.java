@@ -11,7 +11,7 @@ import umc.study.domain.common.BaseEntity;
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class Member_food_category extends BaseEntity {
+public class MemberPrefer extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,8 +22,16 @@ public class Member_food_category extends BaseEntity {
     private Member member;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "category_id")
+    @JoinColumn(name = "food_category_id")
     private FoodCategory foodCategory;
 
+    public void setMember(Member member){
+        if(this.member != null)
+            member.getMemberPrefers().remove(this);
+        this.member = member;
+        member.getMemberPrefers().add(this);
+    }
+
+    public void setFoodCategory(FoodCategory foodCategory) { this.foodCategory = foodCategory; }
 }
 

@@ -2,13 +2,16 @@ package umc.study.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 import umc.study.domain.common.BaseEntity;
 import umc.study.domain.enums.Gender;
 import umc.study.domain.enums.MemberStatus;
 import umc.study.domain.enums.SocialType;
-import umc.study.domain.mapping.Member_allowance;
-import umc.study.domain.mapping.Member_food_category;
-import umc.study.domain.mapping.Member_mission;
+import umc.study.domain.mapping.MemberAllowance;
+import umc.study.domain.mapping.MemberPrefer;
+import umc.study.domain.mapping.ChallengingMission;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -16,6 +19,8 @@ import java.util.List;
 
 @Entity
 @Getter
+@DynamicUpdate
+@DynamicInsert
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
@@ -50,9 +55,10 @@ public class Member extends BaseEntity {
 
     private LocalDate inactiveDate;
 
-    @Column(nullable = false, length = 30)
+//    @Column(nullable = false, length = 30)
     private String email;
 
+    @ColumnDefault("0")
     private Integer point;
 
     private boolean location_allowance;
@@ -60,14 +66,16 @@ public class Member extends BaseEntity {
     private boolean marketing_allowance;
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
-    private List<Member_allowance> memberAllowanceList = new ArrayList<>();
+    private List<MemberAllowance> memberAllowances = new ArrayList<>();
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
-    private  List<Member_food_category> memberFoodCategoryList = new ArrayList<>();
+    private  List<MemberPrefer> memberPrefers = new ArrayList<>();
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
-    private List<Review> reviewList = new ArrayList<>();
+    private List<Review> reviews = new ArrayList<>();
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
-    private List<Member_mission> memberMissionList = new ArrayList<>();
+    private List<ChallengingMission> memberMissions = new ArrayList<>();
+
+
 }
